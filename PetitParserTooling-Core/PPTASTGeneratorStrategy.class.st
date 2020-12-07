@@ -21,27 +21,10 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PPTASTGeneratorStrategy class >> pwbMrlStrategy [
-	^ self new
-		rulesToFlatten:
-			#(identifier basicType booleanValue number parametrizedType string constant defaultVariable exitStatement uncheckedIdentifier defaultEventType graphicComponentToken generatorToken formatType accessModifier sqlQuery endForward this arrayDesignation argumentOption continueStatement time dataComponent oppositeFullInvocation);
-		rulesToIgnore: #(blank blanks spaces reservedKeyword newlines identifierCharacter);
-		parserPackage: #'PowerBuilder-Parser-Core';
-		astPackage: #'PowerBuilder-Parser-AST';
-		astPrefix: #MrlPWBAST;
-		parserClass:
-				[ :originClass | originClass name copyReplaceAll: 'Grammar' with: 'Parser' ];
-		visitorPackage: #'Maryline-Parser-Visitor';
-		visitorClass: #PWBASTAbstractVisitor;
-		keepPositions: true;
-		yourself
-]
-
-{ #category : #'as yet unclassified' }
 PPTASTGeneratorStrategy class >> pwbStrategy [
 	^ self new
 		rulesToFlatten:
-			#(identifier basicType booleanValue number parametrizedType string constant defaultVariable exitStatement uncheckedIdentifier defaultEventType graphicComponentToken generatorToken formatType this arrayDesignation argumentOption continueStatement time dataComponent);
+			#(identifier basicType booleanValue number parametrizedType string constant defaultVariable exitStatement uncheckedIdentifier defaultEventType graphicComponentToken generatorToken formatType this arrayDesignation argumentOption continueStatement time dataComponent expressionSign);
 		rulesToIgnore: #(blank blanks spaces reservedKeyword newlines identifierCharacter);
 		parserPackage: #'PowerBuilder-Parser-Core';
 		parserClass: #PWBDataWindowParser;
@@ -57,7 +40,7 @@ PPTASTGeneratorStrategy class >> pwbStrategy [
 PPTASTGeneratorStrategy class >> pwbUserObjectStrategy [
 	^ self new
 		rulesToFlatten:
-			#(identifier basicType booleanValue number parametrizedType string constant defaultVariable exitStatement uncheckedIdentifier defaultEventType graphicComponentToken generatorToken formatType accessModifier sqlQuery endForward this arrayDesignation argumentOption continueStatement time dataComponent);
+			#(identifier basicType booleanValue number parametrizedType string constant defaultVariable exitStatement uncheckedIdentifier defaultEventType graphicComponentToken generatorToken formatType accessModifier sqlQuery endForward this arrayDesignation argumentOption continueStatement time dataComponent expressionSign);
 		rulesToIgnore: #(blank blanks spaces reservedKeyword newlines identifierCharacter);
 		parserPackage: #'PowerBuilder-Parser-Core';
 		astPackage: #'PowerBuilder-Parser-AST';
